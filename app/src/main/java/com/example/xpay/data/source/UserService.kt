@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface UserService {
 
-    @GET("/users")
+    @GET("users")
     suspend fun getUsersList(
         @Query("limit") limit: String,
         @Query("skip") skip: String

@@ -17,6 +17,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -80,4 +81,6 @@ dependencies {
 
     // Network Helper
     implementation "com.github.skydoves:sandwich:1.2.5"
+
+
 }

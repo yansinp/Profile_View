@@ -1034,18 +1034,17 @@
 
                     </LinearLayout>
 
-<!--                    BANK DETAILS-->
+                    <!--                    BANK DETAILS-->
                     <LinearLayout
                         android:id="@+id/bank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
-
 
 
                         <androidx.cardview.widget.CardView
@@ -1069,6 +1068,7 @@
                                 android:textSize="12sp" />
 
                         </androidx.cardview.widget.CardView>
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1090,7 +1090,6 @@
                                 android:textSize="12sp" />
 
                         </androidx.cardview.widget.CardView>
-
 
 
                         <androidx.cardview.widget.CardView
