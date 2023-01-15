@@ -4,11 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.details.DetailsFragment">
+    tools:context=".presentation.details.DetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/top_bar"
@@ -19,6 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -72,7 +85,7 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="150dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,14 +99,15 @@
                         android:id="@+id/photoImg"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:src="@tools:sample/avatars" />
 
                     <TextView
-                        android:id="@+id/title"
+                        android:id="@+id/name"
                         style="@style/TextAppearance.MaterialComponents.Body2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,7 +119,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:text="sunt aut facere repella" />
+                        app:layout_constraintTop_toBottomOf="@+id/photoImg"
+                        tools:text="lorem ipsum " />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -138,6 +153,7 @@
                     android:padding="10dp">
 
                     <TextView
+                        android:id="@+id/personeldetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -148,11 +164,12 @@
                         android:paddingTop="8dp"
                         android:paddingEnd="10dp"
                         android:paddingBottom="8dp"
-                        android:text="Personal Details"
+                        android:text="Personal Profile"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/contact_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -168,6 +185,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -183,6 +201,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/work_details"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -198,10 +217,10 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/bank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="30dp"
                         android:background="@drawable/profile_item_bg"
                         android:backgroundTint="@color/blue_grey_200"
                         android:fontFamily="@font/worksans_medium"
@@ -210,6 +229,23 @@
                         android:paddingEnd="10dp"
                         android:paddingBottom="8dp"
                         android:text="Bank"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/others"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/profile_item_bg"
+                        android:backgroundTint="@color/brown_400"
+                        android:fontFamily="@font/worksans_medium"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp"
+                        android:text="Others"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -235,13 +271,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <!--            PERSONEL DETAILS-->
+                    <!--            PERSONEL PROFILE-->
                     <LinearLayout
-                        android:id="@+id/personal_details"
+                        android:id="@+id/personal_details_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -270,6 +306,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/gender"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -299,11 +336,12 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/age"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
                                         android:padding="2dp"
-                                        android:text="Age :  "
+                                        android:text="Age : "
                                         android:textColor="@color/black"
                                         android:textSize="12sp" />
 
@@ -326,11 +364,12 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/date_ofbirth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
                                 android:padding="2dp"
-                                android:text="Birth Date :  "
+                                android:text="Date Of Birth :  "
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -359,6 +398,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/hieght"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -388,6 +428,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/weight"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -426,6 +467,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/bloodgroup"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -455,6 +497,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/eyecolour"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -482,6 +525,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/haircolour"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -504,6 +548,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/hairtype"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -514,12 +559,35 @@
 
                         </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/university"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="University :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
 
                     </LinearLayout>
 
                     <!--             CONTACTS INFO-->
                     <LinearLayout
-                        android:id="@+id/contacts_info"
+                        android:id="@+id/contacts_info_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -542,6 +610,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/phone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -564,6 +633,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/email"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -587,6 +657,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/username"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -609,11 +680,12 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/password"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
                                 android:padding="2dp"
-                                android:text="Passwords :  "
+                                android:text="Password :  "
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -624,7 +696,7 @@
 
                     <!--            ADDRESS-->
                     <LinearLayout
-                        android:id="@+id/address"
+                        android:id="@+id/address_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -647,6 +719,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/addrss"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -670,6 +743,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/city"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -703,6 +777,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/lat"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -732,6 +807,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/lon"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -760,6 +836,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/postalcode"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -782,6 +859,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/state"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -797,7 +875,7 @@
                     <!--            WORK DETAILS-->
 
                     <LinearLayout
-                        android:id="@+id/work_details"
+                        android:id="@+id/work_details_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -820,11 +898,12 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/firmname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
                                 android:padding="2dp"
-                                android:text="Name :  "
+                                android:text="Firm Name :  "
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -842,6 +921,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/designtion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -864,6 +944,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/addressfirm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -887,6 +968,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/cityfirm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -920,6 +1002,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/latfirm"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -949,6 +1032,7 @@
                                     app:contentPadding="10dp">
 
                                     <TextView
+                                        android:id="@+id/lonfirm"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/worksans_regular"
@@ -977,6 +1061,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/postcodefirm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -999,6 +1084,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/statefirm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -1021,6 +1107,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/dptfirm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -1036,7 +1123,7 @@
 
                     <!--                    BANK DETAILS-->
                     <LinearLayout
-                        android:id="@+id/bank"
+                        android:id="@+id/bank_ll"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -1059,6 +1146,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/cardnumber"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -1081,6 +1169,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/cardexpire"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -1104,6 +1193,7 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/currency"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
@@ -1126,11 +1216,144 @@
                             app:contentPadding="10dp">
 
                             <TextView
+                                android:id="@+id/cardtype"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/worksans_regular"
                                 android:padding="2dp"
                                 android:text="Card Type :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+                    <!--                    OTHERS-->
+                    <LinearLayout
+                        android:id="@+id/others_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/domain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="Domain :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/ip"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="IP :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/ein"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="E I N :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/ssn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="S S N :  "
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:contentPadding="10dp">
+
+                            <TextView
+                                android:id="@+id/useragent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/worksans_regular"
+                                android:padding="2dp"
+                                android:text="User Agent:  "
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 

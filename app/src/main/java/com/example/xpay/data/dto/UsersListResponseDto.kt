@@ -5,6 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
+import com.example.xpay.domain.model.UserListResponse
 
 @JsonClass(generateAdapter = true)
 @Parcelize
@@ -16,23 +17,33 @@ data class UsersListResponseDto(
     @Json(name = "total")
     val total: Int?,
     @Json(name = "users")
-    val users: List<User?>?
+    val users: List<UserDto>?
 ) : Parcelable {
+
+    fun toUserListResponse(): UserListResponse {
+        return UserListResponse(
+            limit = limit ?: 0,
+            skip = skip ?: 0,
+            total = total ?: 0,
+            users = users?.map { it.toUser() }?: emptyList()
+        )
+    }
+
     @JsonClass(generateAdapter = true)
     @Parcelize
-    data class User(
+    data class UserDto(
         @Json(name = "address")
-        val address: Address?,
+        val address: AddressDto?,
         @Json(name = "age")
         val age: Int?,
         @Json(name = "bank")
-        val bank: Bank?,
+        val bank: BankDto?,
         @Json(name = "birthDate")
         val birthDate: String?,
         @Json(name = "bloodGroup")
         val bloodGroup: String?,
         @Json(name = "company")
-        val company: Company?,
+        val company: CompanyDto?,
         @Json(name = "domain")
         val domain: String?,
         @Json(name = "ein")
@@ -46,7 +57,7 @@ data class UsersListResponseDto(
         @Json(name = "gender")
         val gender: String?,
         @Json(name = "hair")
-        val hair: Hair?,
+        val hair: HairDto?,
         @Json(name = "height")
         val height: Int?,
         @Json(name = "id")
@@ -76,33 +87,86 @@ data class UsersListResponseDto(
         @Json(name = "weight")
         val weight: Double?
     ) : Parcelable {
+
+        fun toUser(): UserListResponse.User {
+            return UserListResponse.User(
+                address = address?.toAddress(),
+                age = age ?: 0,
+                bank = bank?.toBank(),
+                birthDate = birthDate ?: "",
+                bloodGroup = bloodGroup ?: "",
+                company = company?.toCompany(),
+                domain = domain ?: "",
+                ein = ein ?: "",
+                email = email ?: "",
+                eyeColor = eyeColor ?: "",
+                firstName = firstName ?: "",
+                gender = gender ?: "",
+                hair = hair?.toHair(),
+                height = height ?: 0,
+                id = id ?: 0,
+                image = image ?: "",
+                ip = ip ?: "",
+                lastName = lastName ?: "",
+                macAddress = macAddress ?: "",
+                maidenName = maidenName ?: "",
+                password = password ?: "",
+                phone = phone ?: "",
+                ssn = ssn ?: "",
+                university = university ?: "",
+                userAgent = userAgent ?: "",
+                username = username ?: "",
+                weight = weight ?: 0.0,
+
+
+                )
+        }
+
         @JsonClass(generateAdapter = true)
         @Parcelize
-        data class Address(
+        data class AddressDto(
             @Json(name = "address")
             val address: String?,
             @Json(name = "city")
             val city: String?,
             @Json(name = "coordinates")
-            val coordinates: Coordinates?,
+            val coordinates: CoordinatesDto?,
             @Json(name = "postalCode")
             val postalCode: String?,
             @Json(name = "state")
             val state: String?
         ) : Parcelable {
+
+            fun toAddress(): UserListResponse.User.Address {
+                return UserListResponse.User.Address(
+                    address = address ?: "",
+                    city = city ?: "",
+                    coordinates = coordinates?.toCoordinates(),
+                    postalCode = postalCode ?: "",
+                    state = state ?: ""
+                )
+            }
+
             @JsonClass(generateAdapter = true)
             @Parcelize
-            data class Coordinates(
+            data class CoordinatesDto(
                 @Json(name = "lat")
                 val lat: Double?,
                 @Json(name = "lng")
                 val lng: Double?
-            ) : Parcelable
+            ) : Parcelable {
+                fun toCoordinates(): UserListResponse.User.Address.Coordinates {
+                    return UserListResponse.User.Address.Coordinates(
+                        lat = lat ?: 0.0,
+                        lng = lng ?: 0.0
+                    )
+                }
+            }
         }
 
         @JsonClass(generateAdapter = true)
         @Parcelize
-        data class Bank(
+        data class BankDto(
             @Json(name = "cardExpire")
             val cardExpire: String?,
             @Json(name = "cardNumber")
@@ -113,13 +177,23 @@ data class UsersListResponseDto(
             val currency: String?,
             @Json(name = "iban")
             val iban: String?
-        ) : Parcelable
+        ) : Parcelable {
+            fun toBank(): UserListResponse.User.Bank {
+                return UserListResponse.User.Bank(
+                    cardExpire = cardExpire ?: "",
+                    cardNumber = cardNumber ?: "",
+                    cardType = cardType ?: "",
+                    currency = currency ?: "",
+                    iban = iban ?: ""
+                )
+            }
+        }
 
         @JsonClass(generateAdapter = true)
         @Parcelize
-        data class Company(
+        data class CompanyDto(
             @Json(name = "address")
-            val address: Address?,
+            val address: AddressDto?,
             @Json(name = "department")
             val department: String?,
             @Json(name = "name")
@@ -127,38 +201,74 @@ data class UsersListResponseDto(
             @Json(name = "title")
             val title: String?
         ) : Parcelable {
+
+            fun toCompany(): UserListResponse.User.Company {
+                return UserListResponse.User.Company(
+                    address = address?.toAddressCompany(),
+                    department = department ?: "",
+                    name = name ?: "",
+                    title = title ?: ""
+
+                )
+            }
+
             @JsonClass(generateAdapter = true)
             @Parcelize
-            data class Address(
+            data class AddressDto(
                 @Json(name = "address")
                 val address: String?,
                 @Json(name = "city")
                 val city: String?,
                 @Json(name = "coordinates")
-                val coordinates: Coordinates?,
+                val coordinates: CoordinatesDto?,
                 @Json(name = "postalCode")
                 val postalCode: String?,
                 @Json(name = "state")
                 val state: String?
             ) : Parcelable {
+
+                fun toAddressCompany(): UserListResponse.User.Company.Address {
+                    return UserListResponse.User.Company.Address(
+                        address = address ?: "",
+                        city = city ?: "",
+                        coordinates = coordinates?.toCompanyCoordinates(),
+                        postalCode = postalCode ?: "",
+                        state = state ?: ""
+                    )
+                }
+
                 @JsonClass(generateAdapter = true)
                 @Parcelize
-                data class Coordinates(
+                data class CoordinatesDto(
                     @Json(name = "lat")
                     val lat: Double?,
                     @Json(name = "lng")
                     val lng: Double?
-                ) : Parcelable
+                ) : Parcelable {
+                    fun toCompanyCoordinates(): UserListResponse.User.Company.Address.Coordinates {
+                        return UserListResponse.User.Company.Address.Coordinates(
+                            lat = lat ?: 0.0,
+                            lng = lng ?: 0.0
+                        )
+                    }
+                }
             }
         }
 
         @JsonClass(generateAdapter = true)
         @Parcelize
-        data class Hair(
+        data class HairDto(
             @Json(name = "color")
             val color: String?,
             @Json(name = "type")
             val type: String?
-        ) : Parcelable
+        ) : Parcelable {
+            fun toHair(): UserListResponse.User.Hair {
+                return UserListResponse.User.Hair(
+                    color = color ?: "",
+                    type = type ?: "",
+                )
+            }
+        }
     }
 }
